@@ -64,9 +64,18 @@
 			</f:link.page>
 		</f:then>
 		<f:else>
-			<a href="{target}" class="btn btn-{size} btn-{class} {additionalClassNames}" rel="{f:if(condition: tooltip, then: 'tooltip')}" title="{title}">
-				<f:render section="Text" arguments="{_all}" />
-			</a>
+			<f:if condition="0:{v:format.substring(content: target, start: 0, length: 4)} = 0:'file'">
+				<f:then>
+					<f:link.page pageUid="{target}" class="btn btn-{size} btn-{class} {additionalClassNames}{f:if(condition: block, then: ' btn-block')}" rel="{f:if(condition: tooltip, then: 'tooltip')}" title="{title}">
+						<f:render section="Text" arguments="{_all}" />
+					</f:link.page>	
+				</f:then>
+				<f:else>
+					<a href="{target}" class="btn btn-{size} btn-{class} {additionalClassNames}" rel="{f:if(condition: tooltip, then: 'tooltip')}" title="{title}">
+						<f:render section="Text" arguments="{_all}" />
+					</a>		
+				</f:else>
+			</f:if>
 		</f:else>
 	</f:if>
 </f:section>
